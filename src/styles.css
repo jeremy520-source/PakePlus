@@ -1,112 +1,525 @@
-.logo.vanilla:hover {
-    filter: drop-shadow(0 0 2em #ffe21c);
-}
-:root {
-    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
-
-    color: #0f0f0f;
-    background-color: #f6f6f6;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-}
-
-.container {
+* {
     margin: 0;
-    padding-top: 10vh;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    height: 100vh;
+    background-color: #fff;
 }
 
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: 0.75s;
+/* 左侧导航栏样式优化 */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(90deg, #1565C0 0%, #E3F2FD 100%);
+    color: white;
+    padding: 30px 0;
+    height: 100%;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.logo.tauri:hover {
-    filter: drop-shadow(0 0 2em #24c8db);
-}
-
-.row {
-    display: flex;
-    justify-content: center;
-}
-
-a {
+.sidebar h2 {
+    padding: 0 25px;
+    margin-bottom: 30px;
+    font-size: 24px;
     font-weight: 500;
-    color: #646cff;
-    text-decoration: inherit;
-}
-
-a:hover {
-    color: #535bf2;
-}
-
-h1 {
+    letter-spacing: 1px;
     text-align: center;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-input,
-button {
-    border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    color: #0f0f0f;
-    background-color: #ffffff;
-    transition: border-color 0.25s;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+.nav-list {
+    list-style: none;
 }
 
-button {
+.nav-item {
+    padding: 16px 25px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px 15px;
+    position: relative;
+    border-radius: 6px;
+    color: #0d47a1;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-button:hover {
-    border-color: #396cd8;
-}
-button:active {
-    border-color: #396cd8;
-    background-color: #e8e8e8;
+.nav-item span {
+    position: relative;
+    z-index: 1;
 }
 
-input,
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-item.active {
+    background: linear-gradient(90deg, #0d47a1 0%, #1565C0 100%);
+    color: white;
+}
+
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #0d47a1;
+    border-radius: 4px;
+}
+
+/* 右侧内容区样式优化 */
+.content {
+    flex: 1;
+    padding: 30px 40px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+.content h1 {
+    margin-right: 120px;
+    margin-bottom: 35px;
+    color: #1565C0;
+    font-size: 28px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.content h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #0d47a1 0%, #1565C0 100%);
+}
+
+/* 算法卡片样式优化 */
+.algorithm-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 25px;
+}
+
+.algorithm-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eef0f5;
+}
+
+.algorithm-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.algorithm-card h3 {
+    color: #1565C0;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.version-info {
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.version-info p {
+    margin: 10px 0;
+    color: #555;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.version-info p::before {
+    content: '•';
+    margin-right: 8px;
+    color: #1565C0;
+    font-size: 18px;
+}
+
+/* 按钮样式优化 */
 button {
-    outline: none;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#greet-input {
-    margin-right: 5px;
+.download-btn {
+    background: linear-gradient(90deg, #0d47a1 0%, #1565C0 100%);
+    color: white;
+    margin-right: 12px;
 }
 
+.download-btn:hover {
+    background: linear-gradient(90deg, #0a367d 0%, #0d47a1 100%);
+    box-shadow: 0 4px 12px rgba(13, 71, 161, 0.2);
+}
+
+.history-btn {
+    background-color: #fff;
+    color: #1565C0;
+    border: 1px solid #1565C0;
+}
+
+.history-btn:hover {
+    background-color: #f0f2f5;
+    color: #152461;
+}
+
+/* 滚动条美化 */
+.content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #c5cae9;
+    border-radius: 4px;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+    background: #9fa8da;
+}
+
+/* 适配深色模式 */
 @media (prefers-color-scheme: dark) {
-    :root {
-        color: #f6f6f6;
-        background-color: #2f2f2f;
+    body {
+        background-color: #121212;
     }
 
-    a:hover {
-        color: #24c8db;
+    .content {
+        background-color: #1e1e1e;
     }
 
-    input,
-    button {
-        color: #ffffff;
-        background-color: #0f0f0f98;
+    .algorithm-card {
+        background-color: #2d2d2d;
+        border-color: #333;
     }
-    button:active {
-        background-color: #0f0f0f69;
+
+    .version-info {
+        background-color: #252525;
+    }
+
+    .version-info p {
+        color: #bbb;
+    }
+
+    .content h1 {
+        color: #fff;
+    }
+
+    .algorithm-card h3 {
+        color: #fff;
     }
 }
+
+/* 添加上传区域样式 */
+.upload-section {
+    margin-bottom: 20px;
+}
+
+.upload-btn {
+    position: absolute;
+    top: 35px;
+    right: 40px;
+    background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+    color: white;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.upload-btn::before {
+    content: '+';
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.upload-btn:hover {
+    background: linear-gradient(90deg, #45a049 0%, #388e3c 100%);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+    transform: translateY(-1px);
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 30px;
+    width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: linear-gradient(90deg, #0d47a1 0%, #1565C0 100%);
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(90deg, #0a367d 0%, #0d47a1 100%);
+}
+
+/* 修改平台内容区域的显示逻辑 */
+.platform-content {
+    display: none; /* 默认隐藏所有平台内容 */
+}
+
+.platform-content.active {
+    display: block; /* 只显示激活的平台内容 */
+}
+
+/* 版本列表样式 */
+.version-list {
+    margin-top: 20px;
+}
+
+.version-card {
+    position: relative;
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eef0f5;
+}
+
+.version-card h3 {
+    color: #1565C0;
+    margin-right: 80px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* 上传按钮样式调整 */
+.upload-btn {
+    margin-top: 20px;
+    background: linear-gradient(90deg, #0d47a1 0%, #1565C0 100%);
+    color: white;
+}
+
+/* 添加文件路径输入框的样式 */
+.input-hint {
+    display: block;
+    color: #666;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+#filePath {
+    font-family: monospace; /* 使用等宽字体，便于路径显示 */
+}
+
+/* 添加加载和错误提示的样式 */
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+.error-message {
+    background-color: #fff3f3;
+    border: 1px solid #ffcdd2;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.error-icon {
+    font-size: 24px;
+}
+
+.error-text h3 {
+    color: #d32f2f;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.error-text p {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* 禁用状态的上传按钮样式 */
+.upload-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.upload-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* 添加卡片操作区域样式 */
+.card-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* 删除按钮样式 */
+.delete-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    color: #dc3545;
+    padding: 6px 12px;
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.delete-btn:hover {
+    background-color: #dc3545;
+    color: white;
+    opacity: 1;
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+/* 调整下载按钮样式，使其与删除按钮搭配 */
+.download-btn {
+    background: linear-gradient(90deg, #0d47a1 0%, #1565C0 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.download-btn:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+/* 优化版本信息显示 */
+.version-info {
+    margin: 15px 0 20px 0;
+    padding: 12px 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    margin-right: 60px;
+}
+
+/* 添加密码输入框容器样式 */
+.password-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-container input {
+    flex: 1;
+    padding-right: 40px; /* 为按钮留出空间 */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.toggle-password:hover {
+    opacity: 1;
+}
+ 
