@@ -1,22 +1,152 @@
+<!--
+ * @Description: 
+ * @Autor: MS
+ * @Date: 2024-11-27 10:36:39
+ * @LastEditors: MS
+ * @LastEditTime: 2024-11-27 11:25:31
+-->
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="styles.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>PakePlus App</title>
-        <script type="module" src="/main.js" defer></script>
-    </head>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算法版本管理系统</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+            <h2>算法平台</h2>
+            <ul class="nav-list">
+                <li class="nav-item active" data-target="rk3588-common">
+                    <span>RK3588 通用算法</span>
+                </li>
+                <li class="nav-item" data-target="rk3588-meter">
+                    <span>RK3588 表计算法</span>
+                </li>
+                <li class="nav-item" data-target="rk3588-split">
+                    <span>RK3588 分割算法</span>
+                </li>
+                <li class="nav-item" data-target="android">
+                    <span>Android 算法</span>
+                </li>
+                <li class="nav-item" data-target="x86-common">
+                    <span>X86 通用算法</span>
+                </li>
+                <li class="nav-item" data-target="x86-meter">
+                    <span>X86 表计算法</span>
+                </li>
+            </ul>
+        </div>
 
-    <body>
-        <main class="container">
-            <h1>Welcome to PakePlus</h1>
+        <!-- 右侧内容区 -->
+        <div class="content">
+            <!-- RK3588 通用算法版本管理 -->
+            <div class="platform-content active" id="rk3588-common">
+                <h1>RK3588 通用算法版本管理</h1>
+                <div class="version-list">
+                    <!-- 版本卡片将通过JavaScript动态添加 -->
+                </div>
+                <button class="upload-btn" data-platform="rk3588-common">上传新版本</button>
+            </div>
 
-            <form class="row" id="greet-form">
-                <input id="greet-input" placeholder="Enter a name..." />
-                <button type="submit">Greet</button>
+            <!-- RK3588 表计算法版本管理 -->
+            <div class="platform-content" id="rk3588-meter">
+                <h1>RK3588 表计算法版本管理</h1>
+                <div class="version-list">
+                    <!-- 版本卡片将通过JavaScript动态添加 -->
+                </div>
+                <button class="upload-btn" data-platform="rk3588-meter">上传新版本</button>
+            </div>
+
+            <!-- RK3588 分割算法版本管理 -->
+            <div class="platform-content" id="rk3588-split">
+                <h1>RK3588 分割算法版本管理</h1>
+                <div class="version-list">
+                    <!-- 版本卡片将通过JavaScript动态添加 -->
+                </div>
+                <button class="upload-btn" data-platform="rk3588-split">上传新版本</button>
+            </div>
+
+            <!-- Android 算法版本管理 -->
+            <div class="platform-content" id="android">
+                <h1>Android 算法版本管理</h1>
+                <div class="version-list">
+                    <!-- 版本卡片将通过JavaScript动态添加 -->
+                </div>
+                <button class="upload-btn" data-platform="android">上传新版本</button>
+            </div>
+
+            <!-- X86 通用算法版本管理 -->
+            <div class="platform-content" id="x86-common">
+                <h1>X86 通用算法版本管理</h1>
+                <div class="version-list">
+                    <!-- 版本卡片将通过JavaScript动态添加 -->
+                </div>
+                <button class="upload-btn" data-platform="x86-common">上传新版本</button>
+            </div>
+
+            <!-- X86 表计算法版本管理 -->
+            <div class="platform-content" id="x86-meter">
+                <h1>X86 表计算法版本管理</h1>
+                <div class="version-list">
+                    <!-- 版本卡片将通过JavaScript动态添加 -->
+                </div>
+                <button class="upload-btn" data-platform="x86-meter">上传新版本</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 上传模态框 -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>上传新版本</h2>
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label for="version">版本号</label>
+                    <input type="text" id="version" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">更新说明</label>
+                    <textarea id="description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="password">管理员密码</label>
+                    <div class="password-input-container">
+                        <input type="password" id="password" required>
+                        <button type="button" class="toggle-password" title="显示/隐藏密码">👁️</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="filePath">算法包路径</label>
+                    <input type="text" id="filePath" required placeholder="例如：/home/data/algo.zip">
+                    <small class="input-hint">请输入局域网完整路径</small>
+                </div>
+                <button type="submit" class="submit-btn">上传</button>
             </form>
-            <p id="greet-msg"></p>
-        </main>
-    </body>
-</html>
+        </div>
+    </div>
+
+    <!-- 删除确认模态框 -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close-delete">&times;</span>
+            <h2>删除版本确认</h2>
+            <form id="deleteForm">
+                <div class="form-group">
+                    <label for="deletePassword">管理员密码</label>
+                    <div class="password-input-container">
+                        <input type="password" id="deletePassword" required>
+                        <button type="button" class="toggle-password" title="显示/隐藏密码">👁️</button>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">确认删除</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
