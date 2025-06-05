@@ -1,0 +1,13 @@
+{
+    "versions": {
+        "rk3588-common": [],
+        "rk3588-meter": [
+            {
+                "version": "V0.0.6",
+                "date": "2024-11-27",
+                "description": "ssss",
+                "filePath": "C:\\Users\\DELL\\Desktop\\x86_meter_0.0.6.zip"
+            }
+        ]
+    }
+}
